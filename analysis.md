@@ -4,7 +4,9 @@
 
 - Around 40 minutes on thinking through the problem, deciding the scope, and planning the solution.
 - Around 1 hour 30 minutes on implementation, testing, fixing issues, and improving the UI.
-- Total time: about 2 hours 10 minutes.
+- 1 hour documenting.
+- Total time: about 3 hours 10 minutes.
+- 
 
 ## What I Automated
 

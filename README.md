@@ -12,7 +12,6 @@ From that input, it performs a small, ethical crawl and produces an onboarding p
 - business keywords
 - key people
 - social profile links
-- a short company summary
 
 ## Stack
 
@@ -59,17 +58,25 @@ brand_onboarding/
 ├── .env.example
 ├── how_to_run.md
 ├── README.md
-└── analysis.md
+├── analysis.md
+├── vector_store.py
+└── vector_db/
 ```
 
 ## Important Constraints
 
-- No database
+- No hosted database
 - No authentication
 - No React
 - No agents
 - No concurrent crawling
 - No detection engine
+
+## Notes
+
+- Crawling is synchronous at the application level.
+- The app uses Crawl4AI when available and falls back to `requests` if needed.
+- Each completed onboarding profile is stored in a local Qdrant vector database under `vector_db/`.
 
 ## Running
 
