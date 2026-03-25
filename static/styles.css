@@ -1,0 +1,68 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-card,
+.card {
+    border: 0;
+    border-radius: 1rem;
+}
+
+.hero-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
+    padding: 2rem;
+}
+
+.eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    color: #315efb;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+}
+
+.asset-card {
+    background: #f8fafc;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 100%;
+    border: 1px solid #e9eef7;
+}
+
+.asset-image-wrap {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e9eef7;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.asset-image {
+    max-width: 100%;
+    max-height: 160px;
+    object-fit: contain;
+}
+
+.keyword-chip {
+    background: #eef4ff;
+    border-radius: 999px;
+    padding: 0.5rem 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-copy {
+    color: #315efb;
+    font-size: 0.95rem;
+    font-weight: 600;
+}

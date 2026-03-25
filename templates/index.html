@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="hero-card shadow-sm">
+                    <div class="mb-4">
+                        <span class="eyebrow">AI-Powered Brand Onboarding</span>
+                        <h1 class="display-6 mt-2">Discover official brand signals from minimal input.</h1>
+                        <p class="lead text-muted mb-0">
+                            Enter a company name and one or more official domains. The prototype will perform a limited
+                            ethical crawl, extract structured signals, and normalize the result for onboarding.
+                        </p>
+                    </div>
+
+                    {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+
+                    <form method="post" action="/analyze" class="row g-3" id="onboarding-form">
+                        <div class="col-12">
+                            <label for="company_name" class="form-label">Company name</label>
+                            <input
+                                type="text"
+                                class="form-control form-control-lg"
+                                id="company_name"
+                                name="company_name"
+                                placeholder="Example: Acme Inc"
+                                value="{{ company_name or '' }}"
+                                required
+                            >
+                        </div>
+                        <div class="col-12">
+                            <label for="domains" class="form-label">Official domains</label>
+                            <textarea
+                                class="form-control"
+                                id="domains"
+                                name="domains"
+                                rows="4"
+                                placeholder="example.com, acme.co.uk"
+                                required
+                            >{{ domains or '' }}</textarea>
+                            <div class="form-text">Comma or newline separated. The crawl stays limited to a few high-signal pages per domain.</div>
+                        </div>
+                        <div class="col-12 d-grid d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary btn-lg px-4" id="run-onboarding-button">
+                                <span class="button-label">Run onboarding</span>
+                                <span class="spinner-border spinner-border-sm ms-2 d-none" id="run-onboarding-spinner" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <div class="loading-copy d-none" id="loading-copy">
+                                Crawling high-signal pages and assembling the onboarding profile.
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById("onboarding-form");
+        const button = document.getElementById("run-onboarding-button");
+        const spinner = document.getElementById("run-onboarding-spinner");
+        const loadingCopy = document.getElementById("loading-copy");
+        const buttonLabel = button.querySelector(".button-label");
+
+        form.addEventListener("submit", () => {
+            button.disabled = true;
+            buttonLabel.textContent = "Running onboarding...";
+            spinner.classList.remove("d-none");
+            loadingCopy.classList.remove("d-none");
+        });
+    </script>
+</body>
+</html>

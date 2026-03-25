@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.crawl4ai_runtime/
+vector_db/
