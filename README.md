@@ -34,9 +34,9 @@ Use Python 3.10 or newer for the intended Crawl4AI path. The prototype includes 
 2. Check `robots.txt`.
 3. Parse `sitemap.xml`.
 4. Select a few high-signal URLs.
-5. Crawl pages sequentially.
+5. Crawl pages sequentially using Crawl4AI.
 6. Extract deterministic signals with Python.
-7. Normalize and consolidate with OpenAI.
+7. Use OpenAI to normalize and structure the extracted profile.
 8. Store the onboarding profile in a local vector database.
 9. Render the onboarding profile in a simple UI.
 

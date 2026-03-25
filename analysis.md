@@ -6,7 +6,6 @@
 - Around 1 hour 30 minutes on implementation, testing, fixing issues, and improving the UI.
 - 1 hour documenting.
 - Total time: about 3 hours 10 minutes.
-- 
 
 ## What I Automated
 
@@ -27,21 +26,22 @@ From that input, it automatically:
   - business keywords
   - key people
   - social profile links
-- organizes the final result into a structured profile
+- uses the LLM to clean and structure the extracted signals into the final onboarding profile
+- stores each completed onboarding profile in a local vector database
 - shows the result in a simple web interface
 
 ## What I Assumed
 
 - The customer provides at least one correct official domain.
 - A small crawl is enough to get useful onboarding signals.
-- Did not implement any impersonation as the task said to develop on-boarding prototype.
+- I did not build impersonation detection itself because the task was focused on the onboarding stage.
 - Important information is most likely to be on pages like:
   - homepage
   - about/company
   - team/leadership
   - contact
   - press/investor
-- OpenAI should only help clean and organize results, not discover facts from scratch, kt can hallucinate.
+- OpenAI should only help clean and organize the extracted results, not discover facts from scratch.
 
 
 ## Trade-Offs I Made
@@ -50,17 +50,28 @@ From that input, it automatically:
   - This keeps the flow simple and predictable.
   - It also means some deeper pages may be missed.
 
-- I used simple rule-based extraction and state of the art Crawl4ai.
-  - This makes the system easier to understand, but gives less control on the code.
+- I used simple rule-based extraction together with Crawl4AI.
+  - This keeps the system easier to understand.
+  - It also means extraction quality depends on page structure and limited crawl depth.
 
 - I added a `requests` fallback next to Crawl4AI.
   - This helps the prototype keep working if Crawl4AI has local setup issues.
   - It is not as strong as full browser-based crawling.
 
+- I used the LLM only for structuring the extracted profile.
+  - This improves readability and consistency.
+  - It also keeps the main evidence collection step deterministic.
+
+- I stored profiles in a local vector database.
+  - This makes future retrieval and comparison possible.
+  - It is good for a prototype, but not enough on its own for production scale.
+
 - I kept the frontend simple.
   - The goal was to make the results easy to read and demo.
 
-- Crawling is synchronous, will make it async
+- Crawling is synchronous.
+  - This is simpler for the prototype.
+  - With more time I would make it async.
 
 ## My Analysis Of The Implementation
 
